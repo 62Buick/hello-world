@@ -15,7 +15,7 @@ public class MyWindow extends Frame {
 
     public MyWindow(String title) {
         super(title);
-        setSize(500,140);
+        setSize(600,300);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -31,25 +31,30 @@ public class MyWindow extends Frame {
     paint(Graphics g){
 
         super.paint(g);
-        boolean stopLoop = false;
-        
-        while (!stopLoop){
+
         int day, month, year;
         int minute, hour;
+        int isItAM;
         String aP = "PM";
-        GregorianCalendar date = new GregorianCalendar();
+        Calendar date = Calendar.getInstance();
+        isItAM = date.get(Calendar.AM);
         day = date.get(Calendar.DAY_OF_MONTH);
-        month = date.get(Calendar.MONTH);
+        month = date.get(Calendar.MONTH) + 1;
         year = date.get(Calendar.YEAR);
         minute = date.get(Calendar.MINUTE);
         hour = date.get(Calendar.HOUR);
-                
-        Font sanSerifLarge = new Font("Arial", Font.BOLD, 30);
-        g.setFont(sanSerifLarge);
-        g.drawString(month+"/"+day+"/"+year , 60,60);
-        g.drawString(hour+":"+minute+ " " +aP, 60,100);
-        Thread.sleep(1000);
-    }
+        
+        if (isItAM == 0){
+            aP = "AM";
+        }
 
+        Font sanSerifLarge = new Font("Arial", Font.BOLD, 90);
+        g.setFont(sanSerifLarge);
+        g.drawString(month+"/"+day+"/"+year , 10,120);
+        if (minute < 10){
+            g.drawString(hour+":0"+minute+ " " +aP, 10,250);
+        }else{
+            g.drawString(hour+":"+minute+ " " +aP, 10,250);        
+        }
     }
 }

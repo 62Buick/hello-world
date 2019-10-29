@@ -8,19 +8,24 @@ public class Main {
     public static void main(String[] args) {
         int lastMinute = 59;
         int thisMinute = 1;
-        GregorianCalendar date = new GregorianCalendar();
+        Calendar date = Calendar.getInstance();
         boolean keepLooping = true;
+        MyWindow myWindow = new MyWindow("Clock");
+        myWindow.setVisible(true);
 
 
         while (keepLooping){
             if (lastMinute != thisMinute){
-                MyWindow myWindow = new MyWindow("Clock");
-                myWindow.setVisible(true);
+//                MyWindow myWindow = new MyWindow("Clock");
+//                myWindow.setVisible(true);
+                myWindow.repaint();
             
             }
             
             lastMinute = thisMinute;
+            date = Calendar.getInstance();
             thisMinute = date.get(Calendar.MINUTE); 
+    
             
         }   
     }
